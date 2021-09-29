@@ -1,0 +1,48 @@
+.dashboardDetail {
+  max-width: 83.333vw;
+  max-height: 63.802vh;
+  background: linear-gradient(180deg, #ffecd750 0%, #ffc9c950 100%);
+  border: 1px solid #f88a1250;
+  border-radius: 0.694vw;
+  margin: 7.682vh 8.333vw;
+}
+.dashboardDetailBox {
+  background: #fff;
+  max-width: 13.889vw;
+  max-height: 23.438vh;
+  border-radius: 0.694vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2.604vh 0;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.dBBB {
+  margin-left: 4.167vw;
+  margin-right: 4.167vw;
+  margin-top: 5.208vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+}
+
+.dashboardDetailBox h3 {
+  color: #1d1d1d;
+  font-size: 1.389vw;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+.dashboardDetailBox h1 {
+  font-size: 4.861vw;
+  color: #f88a12;
+  font-weight: normal;
+  margin: 0;
+}
+
+.dashboardDetailBox h2 {
+  font-size: 1.111vw;
+  margin: 0;
+}

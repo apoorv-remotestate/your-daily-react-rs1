@@ -1,0 +1,93 @@
+.login {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 345px;
+  height: 418px;
+  box-shadow: 12px 9px 27px #7777774d;
+  border-radius: 10px;
+  padding: 0 22px;
+  min-width: fit-content;
+  min-height: fit-content;
+}
+.login a {
+  width: 100%;
+  text-decoration: none;
+}
+.login p {
+  color: #f88a12;
+}
+
+.logo {
+  display: flex;
+  width: 288px;
+  height: 106px;
+  max-width: fit-content;
+  padding: 7vh 0 0 7vw;
+}
+article {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.image {
+  max-width: 50.347vw;
+  max-height: 66.146vh;
+  /* min-width: 50%;
+  min-height: auto; */
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  padding-bottom: 25px;
+  padding-top: 43px;
+}
+
+.fpass {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+aside h1 {
+  margin: 0;
+  font-size: 28px;
+  text-align: left;
+  font: normal normal normal 28px/17px Museo Sans 700;
+  letter-spacing: 0px;
+  color: #1d2226;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+aside h2 {
+  text-align: left;
+  font: normal normal normal 18px/17px Museo Sans 100;
+  letter-spacing: 0px;
+  color: #1d2226;
+  opacity: 0.6;
+  margin: 0;
+  font-size: 18px;
+  font-weight: normal;
+}
+.loginSection {
+  background: transparent linear-gradient(180deg, #ffecd7 0%, #ffc9c9 100%) 0%
+    0% no-repeat padding-box;
+
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+@media only screen and (max-width: 600px) {
+  article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

@@ -6,14 +6,7 @@ import { useState, useEffect } from "react";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
-  const token = sessionStorage.getItem("userToken");
-
-  // if (data.length === 0) {
-  //   dataGet().then((data) => {
-  //     setData(data);
-  //     console.log(data);
-  //   });
-  // }
+  const token = localStorage.getItem("userToken");
 
   useEffect(() => {
     if (data.length === 0) {
@@ -21,19 +14,25 @@ const Dashboard = () => {
         setData(data);
       });
     }
-    if (token === null || token === "undefined") {
-      console.log("kinkn");
-      return <Redirect to="/" />;
-    }
-  }, []);
+  });
 
+  if (!token || token === "undefined") {
+    return <Redirect to="/" />;
+  }
   return (
     <>
       <section className="dashboardDetail">
         <div className="dBBB">
           {data.map((data) => {
             return (
-              <div className="dashboardDetailBox" key={data.id}>
+              <div
+                className="dashboardDetailBox"
+                key={data.id}
+                id={data.id}
+                onClick={(e) =>
+                  console.log(e.target.parentElement.id || e.target.id)
+                }
+              >
                 <h3>{data.label}</h3>
                 <h2 style={{ fontSize: "1.111vw", color: "#777777" }}>
                   {data.label2}

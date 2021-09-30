@@ -1,4 +1,6 @@
-import ButtonUnstyled from "@mui/core/ButtonUnstyled";
+import ButtonUnstyled, {
+  buttonUnstyledClasses,
+} from "@mui/core/ButtonUnstyled";
 import { styled } from "@mui/material/styles";
 
 const Test = styled(ButtonUnstyled)(
@@ -8,6 +10,9 @@ const Test = styled(ButtonUnstyled)(
     color: white;
     border: none;
     border-radius:4px;
+    &:hover {
+    background-color: #0059b2;
+  }
   `
 );
 

@@ -1,6 +1,7 @@
 .dashboardDetail {
   max-width: 83.333vw;
   max-height: 63.802vh;
+  min-height: 33vw;
   background: linear-gradient(180deg, #ffecd750 0%, #ffc9c950 100%);
   border: 1px solid #f88a1250;
   border-radius: 0.694vw;
@@ -10,6 +11,7 @@
   background: #fff;
   max-width: 13.889vw;
   max-height: 23.438vh;
+  min-height: 12vw;
   border-radius: 0.694vw;
   display: flex;
   flex-direction: column;

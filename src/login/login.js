@@ -39,7 +39,7 @@ const Login = () => {
     }
   }
 
-  if (token !== null && token !== "undefined") {
+  if (token && token !== null && token !== "undefined") {
     return <Redirect to="/dashboard" />;
   }
 

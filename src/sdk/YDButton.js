@@ -1,6 +1,4 @@
-import ButtonUnstyled, {
-  buttonUnstyledClasses,
-} from "@mui/core/ButtonUnstyled";
+import ButtonUnstyled from "@mui/core/ButtonUnstyled";
 import { styled } from "@mui/material/styles";
 
 const Test = styled(ButtonUnstyled)(

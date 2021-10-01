@@ -1,15 +1,14 @@
-h1 {
-  margin: 0;
-}
 .dashLogo {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-left: 2.222vw;
 }
 .dashButton {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-right: 8.333vw;
 }
 .dashLogo img {
   width: 73px;
@@ -27,11 +26,12 @@ h1 {
   align-items: center;
   background: #f88a12;
   box-shadow: 0px 4px 6px #f88a124d;
-  padding: 3px 28px;
+  padding: 3px 0;
   max-width: 100vw;
 }
 .dashLogo h1 {
   color: #fff;
   font-size: 24px;
-  padding-left: 10px;
+  padding-left: 1.042vw;
+  margin: 0;
 }

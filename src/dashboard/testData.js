@@ -51,13 +51,13 @@ export async function dataGet() {
       id: 7,
       label: "Total Ongoing Bookings",
       value: parseInt(`${dataGot.onGoingOrder}`),
-      button: false,
+      button: true,
     },
     {
       id: 8,
       label: "Past Week Bookings",
       value: parseInt(`${dataGot.bookingForLastWeek}`),
-      button: false,
+      button: true,
     },
     {
       id: 9,

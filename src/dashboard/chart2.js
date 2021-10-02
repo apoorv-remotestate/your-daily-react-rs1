@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import "./chart1.css";
-import { YDSelect } from "../sdk";
 
 const Chart2 = () => {
   const [data1, setData1] = useState([]);
@@ -14,7 +13,6 @@ const Chart2 = () => {
   const chartGet = async () => {
     const token = localStorage.getItem("userToken");
     const baseurl = "https://dev-api.yourdaily.co.in";
-    const days = 14;
     let data1 = await fetch(
       `${baseurl}/api/store-manager/dashboard/nsg/${days}`,
       {
@@ -24,6 +22,8 @@ const Chart2 = () => {
     );
     let chartGot = await data1.json();
     setData2(true);
+    setData1(chartGot);
+
     return chartGot;
   };
   useEffect(() => {
@@ -43,11 +43,11 @@ const Chart2 = () => {
       hello.push(data.nowOrders);
       hello2.push(data.scheduledOrders);
       hello3.push(datePost);
+      return null;
     });
   }
 
   const clickHandler = (e) => {
-    console.log(e.target.value);
     days = e.target.value;
     chartGet();
   };

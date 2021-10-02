@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import "./chart1.css";
-import { YDSelect } from "../sdk";
 
 const Chart1 = () => {
   const [data1, setData1] = useState([]);
@@ -43,13 +42,12 @@ const Chart1 = () => {
       hello.push(data.acceptedOrders);
       hello2.push(data.declinedOrders);
       hello3.push(datePost);
+      return null;
     });
   }
 
   const clickHandler = (e) => {
-    console.log(e.target.value);
     days = e.target.value;
-    console.log(days);
     chartGet();
   };
   return (
@@ -66,7 +64,7 @@ const Chart1 = () => {
               <select className="select2" onChange={(e) => clickHandler(e)}>
                 <option value={14}>Last 14 days</option>
                 <option value={30}>Last 30 days</option>
-                <option value={60}>Last 2 MonthsLast </option>
+                <option value={60}>Last 2 Months</option>
               </select>
             </div>
             <div className="some2">
@@ -132,7 +130,6 @@ const Chart1 = () => {
               },
             },
           }}
-          // redraw={true}
         />
       </section>
     </>

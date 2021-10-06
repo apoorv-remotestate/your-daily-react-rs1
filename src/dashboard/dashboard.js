@@ -3,9 +3,13 @@ import { YDPrimaryButton } from "../sdk";
 import { Redirect } from "react-router-dom";
 import { dataGet } from "./testData";
 import { useState, useEffect } from "react";
+import DashboardHeader from "../dashboardHeader/dashboardHeader.js";
+import Chart1 from "../dashboard/chart1";
+import Chart2 from "../dashboard/chart2";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
+  const [link, setLink] = useState();
   const token = localStorage.getItem("userToken");
 
   useEffect(() => {
@@ -19,8 +23,13 @@ const Dashboard = () => {
   if (!token || token === "undefined") {
     return <Redirect to="/" />;
   }
+  if (link) {
+    return <Redirect to={link} />;
+  }
   return (
     <>
+      <DashboardHeader />
+
       <section className="dashboardDetail">
         <div className="dBBB">
           {data.map((data) => {
@@ -28,10 +37,11 @@ const Dashboard = () => {
               <div
                 className="dashboardDetailBox"
                 key={data.id}
-                id={data.id}
-                onClick={(e) =>
-                  console.log(e.target.parentElement.id || e.target.id)
-                }
+                // id={data.id}
+                id={data.link}
+                onClick={(e) => {
+                  setLink(e.target.id || e.target.parentElement.id);
+                }}
               >
                 <h3>{data.label}</h3>
                 <h2 style={{ fontSize: "1.111vw", color: "#777777" }}>
@@ -69,6 +79,7 @@ const Dashboard = () => {
                       value: "View Details",
                       padding: "0.347vw",
                     }}
+                    // value={data.link}
                   />
                 ) : (
                   <div></div>
@@ -78,6 +89,8 @@ const Dashboard = () => {
           })}
         </div>
       </section>
+      <Chart1 />
+      <Chart2 />
     </>
   );
 };

@@ -1,6 +1,5 @@
 export function tableDesign(data) {
   const dataTest = data[1];
-  console.log(data);
   if (data.length !== 0) {
     return (
       <table>
@@ -17,7 +16,7 @@ export function tableDesign(data) {
           {data.map((data) => (
             <tr key={Object.values(data)[0]}>
               {Object.values(data).map((data) => {
-                <td>{data}</td>;
+                return <td>{data}</td>;
               })}
             </tr>
           ))}

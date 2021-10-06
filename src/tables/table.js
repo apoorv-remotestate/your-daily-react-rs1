@@ -1,50 +1,70 @@
+//imports
+
 import { useState, useEffect } from "react";
 import "./table.css";
 import { tableGet } from "./tableData";
-// import { tableDesign } from "./tableDesign";
+import { tableDesign } from "./tableDesign";
 import { somefunc } from "./tableDesignMUI";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import DashboardHeader from "../dashboardHeader/dashboardHeader.js";
+
+//Table
 
 const Table = () => {
+  //getting url selector
+  let stafftypeurl = useParams();
+
+  //States
   const [table1, setTable1] = useState([]);
-  const [select, setSelect] = useState("cart-boy");
+  const [select, setSelect] = useState(stafftypeurl.stafftype);
   const [enable, setEnable] = useState(true);
 
   useEffect(() => {
     tableGet(select).then((tableData) => setTable1(tableData));
-    console.log("adnaj");
   }, [select, enable]);
+
+  //Role Change function
+
+  const handleAction = async (id, role) => {
+    const baseurl = "https://dev-api.yourdaily.co.in";
+    const token = localStorage.getItem("userToken");
+    let role1 = role === "cart-boy" ? "delivery-boy" : "cart-boy";
+    console.log(id, role1);
+    await fetch(`${baseurl}/api/store-manager/staff/update/role`, {
+      method: "PUT",
+      headers: { Authorization: `${token}` },
+      body: JSON.stringify({ id: id, newRole: role1 }),
+    });
+  };
+
+  //change select state
 
   const clickHandler = (e) => {
     let id = e.target.id;
     setSelect(`${id}`);
   };
 
-  async function sendEnable(id) {
+  //send enable disable
+
+  async function sendEnable(id, enable) {
     const baseurl = "https://dev-api.yourdaily.co.in";
     const token = localStorage.getItem("userToken");
-    let result = await fetch(
-      `${baseurl}/api/store-manager/staff/enable/${id}`,
-      {
+
+    if (enable) {
+      await fetch(`${baseurl}/api/store-manager/staff/enable/${id}`, {
         method: "PUT",
         headers: { Authorization: `${token}` },
-      }
-    );
-    result = await result.json();
-    console.log(result);
-  }
-  async function sendDisable(id) {
-    const baseurl = "https://dev-api.yourdaily.co.in";
-    const token = localStorage.getItem("userToken");
-    let result = await fetch(
-      `${baseurl}/api/store-manager/staff/disable/${id}`,
-      {
+      });
+    } else {
+      await fetch(`${baseurl}/api/store-manager/staff/disable/${id}`, {
         method: "PUT",
         headers: { Authorization: `${token}` },
-      }
-    );
-    result = await result.json();
-    console.log(result);
+      });
+    }
   }
+
+  //formatting Data from api
 
   const table2 = JSON.parse(JSON.stringify(table1)).map((data) => {
     const dataNew = [data].map((data) => {
@@ -77,15 +97,31 @@ const Table = () => {
           "Average Rating": data.avgRating,
           Flagged: data.flagged,
           "Enable/Disable": (
-            <input
-              type="checkbox"
-              defaultChecked={enabled}
-              onChange={() => {
-                enabled ? sendDisable(data.id) : sendEnable(data.id);
+            <>
+              <input
+                type="checkbox"
+                id={data.id}
+                defaultChecked={enabled}
+                onChange={() => {
+                  enabled
+                    ? sendEnable(data.id, false)
+                    : sendEnable(data.id, true);
+                  enable ? setEnable(false) : setEnable(true);
+                }}
+              />
+              <label htmlFor={data.id}></label>
+            </>
+          ),
+          Action: (
+            <button
+              type="button"
+              onClick={() => {
+                handleAction(data.id, select);
                 enable ? setEnable(false) : setEnable(true);
-                // enabled = !e.target.checked;
               }}
-            />
+            >
+              Change Role
+            </button>
           ),
         };
         return dataNew;
@@ -107,11 +143,17 @@ const Table = () => {
     return dataNew[0];
   });
 
+  //rendered
+
   return (
     <>
+      <DashboardHeader />
+
       <div className="tableMain">
         <div className="tableOptions">
-          <h2>Back</h2>
+          <Link to="/dashboard">
+            <h2>Back</h2>
+          </Link>
           <h3>+ Add New Cart Person</h3>
         </div>
         <div className="tableSelect" onClick={(e) => clickHandler(e)}>
@@ -125,7 +167,7 @@ const Table = () => {
             <h1 id="user-detail">User Details</h1>
           </div>
         </div>
-        {/* <div className="table">{tableDesign(table2)}</div> */}
+        <div className="table">{tableDesign(table2)}</div>
         <div className="table">{somefunc(table2)}</div>
       </div>
     </>

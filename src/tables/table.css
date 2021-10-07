@@ -72,18 +72,3 @@ tbody {
 input[type="checkbox"] {
   display: none;
 }
-
-input[type="checkbox"] + label {
-  /* background: url(/Assets/uncheck.png); */
-  background: #707070;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-}
-input[type="checkbox"]:checked + label {
-  /* background: url(/Assets/check.png); */
-  background: #f88a12;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-}

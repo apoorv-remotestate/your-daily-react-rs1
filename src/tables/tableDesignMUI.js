@@ -6,20 +6,17 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-export function somefunc(data) {
-  const dataTest = data[1];
+export function somefunc(data, columns) {
   if (data.length !== 0) {
     return (
       <TableContainer>
         <Table>
           <TableHead>
-            {[dataTest].map((data) => (
-              <TableRow>
-                {Object.keys(data).map((data) => (
-                  <TableCell>{data}</TableCell>
-                ))}
-              </TableRow>
-            ))}
+            <TableRow>
+              {columns.map((data) => (
+                <TableCell>{data}</TableCell>
+              ))}
+            </TableRow>
           </TableHead>
           <TableBody key={Date.now()}>
             {data.map((data) => (
@@ -30,6 +27,20 @@ export function somefunc(data) {
               </TableRow>
             ))}
           </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  } else {
+    return (
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              {columns.map((data) => (
+                <TableCell>{data}</TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
         </Table>
       </TableContainer>
     );

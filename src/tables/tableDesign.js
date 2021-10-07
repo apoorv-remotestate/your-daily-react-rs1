@@ -1,18 +1,15 @@
-export function tableDesign(data) {
-  const dataTest = data[1];
+export function tableDesign(data, columns) {
   if (data.length !== 0) {
     return (
       <table>
         <thead>
-          {[dataTest].map((data) => (
-            <tr key={Object.values(data)[0]}>
-              {Object.keys(data).map((data) => (
-                <th>{data}</th>
-              ))}
-            </tr>
-          ))}
+          <tr key={Object.values(data)[0]}>
+            {columns.map((data) => (
+              <th>{data}</th>
+            ))}
+          </tr>
         </thead>
-        <tbody key={Date.now}>
+        <tbody key={Date.now()}>
           {data.map((data) => (
             <tr key={Object.values(data)[0]}>
               {Object.values(data).map((data) => {
@@ -23,6 +20,17 @@ export function tableDesign(data) {
         </tbody>
       </table>
     );
+  } else {
+    return (
+      <table>
+        <thead>
+          <tr key={Object.values(data)[0]}>
+            {columns.map((data) => (
+              <th>{data}</th>
+            ))}
+          </tr>
+        </thead>
+      </table>
+    );
   }
-  return null;
 }

@@ -1,12 +1,11 @@
 //imports
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "./table.css";
 import { tableGet } from "./tableData";
 import { tableDesign } from "./tableDesign";
 import { somefunc } from "./tableDesignMUI";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
 import DashboardHeader from "../dashboardHeader/dashboardHeader.js";
 
 //Table
@@ -19,6 +18,7 @@ const Table = () => {
   const [table1, setTable1] = useState([]);
   const [select, setSelect] = useState(stafftypeurl.stafftype);
   const [enable, setEnable] = useState(true);
+  let enable2 = false;
 
   useEffect(() => {
     tableGet(select).then((tableData) => setTable1(tableData));
@@ -43,6 +43,7 @@ const Table = () => {
   const clickHandler = (e) => {
     let id = e.target.id;
     setSelect(`${id}`);
+    enable2 = true;
   };
 
   //send enable disable
@@ -66,84 +67,121 @@ const Table = () => {
 
   //formatting Data from api
 
-  const table2 = JSON.parse(JSON.stringify(table1)).map((data) => {
-    const dataNew = [data].map((data) => {
-      data.contact = data.contact.slice(3);
-      let date = new Date(data.regDate);
-      let year = date.getFullYear();
-      let month = date.getMonth() + 1;
-      let dt = date.getDate();
+  const table2 = useMemo(() => {
+    return JSON.parse(JSON.stringify(table1)).map((data) => {
+      const dataNew = [data].map((data) => {
+        data.contact = data.contact.slice(3);
+        let date = new Date(data.regDate);
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let dt = date.getDate();
 
-      if (dt < 10) {
-        dt = "0" + dt;
-      }
-      if (month < 10) {
-        month = "0" + month;
-      }
-      date = dt + "/" + month + "/" + year;
-      data.regDate = date;
+        if (dt < 10) {
+          dt = "0" + dt;
+        }
+        if (month < 10) {
+          month = "0" + month;
+        }
+        date = dt + "/" + month + "/" + year;
+        data.regDate = date;
 
-      let enabled = data.enabled;
+        let enabled = data.enabled;
 
-      if (!data.defaultAddress && data.defaultAddress !== null) {
-        const dataNew = {
-          Name: data.name,
-          Contact: data.contact,
-          "Registration Date": data.regDate,
-          "Total Orders": data.totalOrders,
-          Denied: data.deniedOrders,
-          Cancel: data.canceledOrders,
-          "Total Business": data.totalAmount,
-          "Average Rating": data.avgRating,
-          Flagged: data.flagged,
-          "Enable/Disable": (
-            <>
-              <input
-                type="checkbox"
-                id={data.id}
-                defaultChecked={enabled}
-                onChange={() => {
-                  enabled
-                    ? sendEnable(data.id, false)
-                    : sendEnable(data.id, true);
+        if (!data.defaultAddress && data.defaultAddress !== null) {
+          const dataNew = {
+            Name: data.name,
+            Contact: data.contact,
+            "Registration Date": data.regDate,
+            "Total Orders": data.totalOrders,
+            Denied: data.deniedOrders,
+            Cancel: data.canceledOrders,
+            "Total Business": data.totalAmount,
+            "Average Rating": data.avgRating,
+            Flagged: data.flagged,
+            "Enable/Disable": (
+              <>
+                <img
+                  id={data.id}
+                  defaultChecked={enabled}
+                  onClick={() => {
+                    enabled
+                      ? sendEnable(data.id, false)
+                      : sendEnable(data.id, true);
+                    enable ? setEnable(false) : setEnable(true);
+                  }}
+                  src={enabled ? "/Assets/check.png" : "/Assets/uncheck.png"}
+                  style={{ width: "1.806vw", height: "1.806vw" }}
+                  alt="checkbox"
+                />
+              </>
+            ),
+            Action: (
+              <button
+                type="button"
+                onClick={() => {
+                  handleAction(data.id, select);
                   enable ? setEnable(false) : setEnable(true);
                 }}
-              />
-              <label htmlFor={data.id}></label>
-            </>
-          ),
-          Action: (
-            <button
-              type="button"
-              onClick={() => {
-                handleAction(data.id, select);
-                enable ? setEnable(false) : setEnable(true);
-              }}
-            >
-              Change Role
-            </button>
-          ),
-        };
-        return dataNew;
-      } else {
-        const dataNew = {
-          Name: data.name,
-          Contact: data.contact,
-          "Primary Location": data.defaultAddress,
-          "Total Orders": data.totalOrders,
-          Denied: data.deniedOrders,
-          Cancel: data.canceledOrders,
-          "Average Rating": data.avgRating,
-          Flagged: data.flagCount,
-        };
+              >
+                Change Role
+              </button>
+            ),
+          };
+          return dataNew;
+        } else {
+          const dataNew = {
+            Name: data.name,
+            Contact: data.contact,
+            "Primary Location": data.defaultAddress,
+            "Total Orders": data.totalOrders,
+            Denied: data.deniedOrders,
+            Cancel: data.canceledOrders,
+            "Average Rating": data.avgRating,
+            Flagged: data.flagCount,
+          };
 
-        return dataNew;
-      }
+          return dataNew;
+        }
+      });
+      return dataNew[0];
     });
-    return dataNew[0];
-  });
+  }, [table1]);
+
+  const columns = useMemo(() => {
+    if (select === "cart-boy" || select === "delivery-boy") {
+      return [
+        "Name",
+        "Contact",
+        "Registration Data",
+        "Total Orders",
+        "Denied",
+        "Cancel",
+        "Total Business",
+        "Average Rating",
+        "Flagged",
+        "Enable/Disable",
+        "Action",
+      ];
+    }
+    if (select === "user-detail") {
+      return [
+        "Name",
+        "Contact",
+        "Primary Location",
+        "Total Orders",
+        "Denied",
+        "Cancel",
+        "Average Rating",
+        "Flagged",
+      ];
+    }
+  }, [select]);
 
   //rendered
+  if (enable2) {
+    enable2 = false;
+    return <Redirect to={`/details/$select}`} />;
+  }
 
   return (
     <>
@@ -167,8 +205,8 @@ const Table = () => {
             <h1 id="user-detail">User Details</h1>
           </div>
         </div>
-        <div className="table">{tableDesign(table2)}</div>
-        <div className="table">{somefunc(table2)}</div>
+        {/* <div className="table">{tableDesign(table2)}</div> */}
+        <div className="table">{somefunc(table2, columns)}</div>
       </div>
     </>
   );

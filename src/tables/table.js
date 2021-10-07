@@ -3,10 +3,32 @@
 import { useState, useEffect, useMemo } from "react";
 import "./table.css";
 import { tableGet } from "./tableData";
-import { tableDesign } from "./tableDesign";
+// import { tableDesign } from "./tableDesign";
 import { somefunc } from "./tableDesignMUI";
-import { Link, Redirect, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DashboardHeader from "../dashboardHeader/dashboardHeader.js";
+import Tabs from "@mui/material/Tabs";
+import { YDTab } from "../sdk";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { YDPrimaryButton } from "../sdk";
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
+      {...other}
+    >
+      <Box p={3}>{children}</Box>
+    </Typography>
+  );
+}
 
 //Table
 
@@ -18,7 +40,6 @@ const Table = () => {
   const [table1, setTable1] = useState([]);
   const [select, setSelect] = useState(stafftypeurl.stafftype);
   const [enable, setEnable] = useState(true);
-  let enable2 = false;
 
   useEffect(() => {
     tableGet(select).then((tableData) => setTable1(tableData));
@@ -40,10 +61,8 @@ const Table = () => {
 
   //change select state
 
-  const clickHandler = (e) => {
-    let id = e.target.id;
-    setSelect(`${id}`);
-    enable2 = true;
+  const clickHandler = (e, newValue) => {
+    setSelect(newValue);
   };
 
   //send enable disable
@@ -116,15 +135,22 @@ const Table = () => {
               </>
             ),
             Action: (
-              <button
-                type="button"
+              // <button
+              //   type="button"
+              //   onClick={() => {
+              //     handleAction(data.id, select);
+              //     enable ? setEnable(false) : setEnable(true);
+              //   }}
+              // >
+              //   Change Role
+              // </button>
+              <YDPrimaryButton
+                style={{ value: "Change Role", padding: "4px" }}
                 onClick={() => {
                   handleAction(data.id, select);
                   enable ? setEnable(false) : setEnable(true);
                 }}
-              >
-                Change Role
-              </button>
+              />
             ),
           };
           return dataNew;
@@ -145,7 +171,7 @@ const Table = () => {
       });
       return dataNew[0];
     });
-  }, [table1]);
+  }, [table1, enable, select]);
 
   const columns = useMemo(() => {
     if (select === "cart-boy" || select === "delivery-boy") {
@@ -178,10 +204,6 @@ const Table = () => {
   }, [select]);
 
   //rendered
-  if (enable2) {
-    enable2 = false;
-    return <Redirect to={`/details/$select}`} />;
-  }
 
   return (
     <>
@@ -194,7 +216,7 @@ const Table = () => {
           </Link>
           <h3>+ Add New Cart Person</h3>
         </div>
-        <div className="tableSelect" onClick={(e) => clickHandler(e)}>
+        {/* <div className="tableSelect" onClick={(e) => clickHandler(e)}>
           <div className="a" id="cart-boy">
             <h1 id="cart-boy">Cart Person</h1>
           </div>
@@ -204,7 +226,52 @@ const Table = () => {
           <div className="c" id="user-detail">
             <h1 id="user-detail">User Details</h1>
           </div>
-        </div>
+        </div> */}
+        <Box>
+          <Box>
+            <Tabs
+              value={select}
+              onChange={clickHandler}
+              variant="fullWidth"
+              sx={{
+                "& .MuiTabs-indicator": {
+                  backgroundColor: "#F88A12",
+                  height: "6px",
+                },
+              }}
+            >
+              <YDTab
+                value="cart-boy"
+                label="Cart Person Details"
+                style={{
+                  border: "1px black solid",
+
+                  borderTopLeftRadius: "10px",
+                }}
+              />
+              <YDTab
+                value="delivery-boy"
+                label="Delivery Person Details"
+                style={{
+                  borderTop: "1px black solid",
+                  borderBottom: "1px black solid",
+                }}
+              />
+              <YDTab
+                value="user-detail"
+                label="User Details"
+                style={{
+                  border: "1px black solid",
+
+                  borderTopRightRadius: "10px",
+                }}
+              />
+            </Tabs>
+          </Box>
+          <TabPanel value={select}>
+            <div className="table">{somefunc(table2, columns)}</div>
+          </TabPanel>
+        </Box>
         {/* <div className="table">{tableDesign(table2)}</div> */}
         <div className="table">{somefunc(table2, columns)}</div>
       </div>

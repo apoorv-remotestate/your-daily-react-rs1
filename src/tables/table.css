@@ -29,7 +29,7 @@ h3 {
   align-items: center;
   margin-top: 1.736vw;
   cursor: pointer;
-  height: 50px;
+  /* height: 50px; */
 }
 .a,
 .b,
@@ -65,9 +65,13 @@ th {
   padding: 1.944vw 1.528vw;
 }
 
-tbody {
-  border: solid black 1px;
+td {
+  text-align: center;
 }
+
+/* tbody {
+  border: solid black 1px;
+} */
 
 input[type="checkbox"] {
   display: none;

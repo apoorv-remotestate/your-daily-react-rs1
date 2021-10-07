@@ -14,7 +14,9 @@ export function somefunc(data, columns) {
           <TableHead>
             <TableRow>
               {columns.map((data) => (
-                <TableCell>{data}</TableCell>
+                <TableCell sx={{ textAlign: "center", color: "#777777" }}>
+                  {data}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
@@ -22,7 +24,14 @@ export function somefunc(data, columns) {
             {data.map((data) => (
               <TableRow>
                 {Object.values(data).map((data) => {
-                  return <TableCell>{data}</TableCell>;
+                  return (
+                    <TableCell
+                      sx={{ textAlign: "center", color: "#777777" }}
+                      onClick={() => console.log(data)}
+                    >
+                      {data}
+                    </TableCell>
+                  );
                 })}
               </TableRow>
             ))}

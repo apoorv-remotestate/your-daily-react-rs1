@@ -1,0 +1,111 @@
+.cdOneImg img {
+  width: 10.833vw;
+  height: 10.833vw;
+  border-radius: 5.417vw;
+}
+.cdClose img {
+  width: 1.389vw;
+  height: 1.389vw;
+  border-radius: 1.389vw;
+  padding: 2px;
+}
+.cdClose {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.111vw 1.111vw 0 0;
+}
+.cdClose img:hover {
+  background-color: #707070;
+}
+
+.cdform-control {
+  border: 1px solid #707070;
+  border-radius: 0.694vw;
+  /* margin: 8.681vw 11.458vw 4.236vw 11.458vw; */
+  max-width: 41.667vw;
+  min-width: 260px;
+  background-color: #fff;
+}
+.cdContainer {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(200, 200, 200, 0.3);
+}
+.cdMain {
+  border-bottom: 2px solid #f88a1250;
+  margin: 1.111vw 1.111vw 0 1.111vw;
+  display: flex;
+}
+
+.cdOneData {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  margin-bottom: 0.417vw;
+  width: 100%;
+  justify-content: space-between;
+}
+.cdOneDataLabel,
+.cdOneDataText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin: 0;
+}
+.cdOneDataLabel {
+  margin: 0 0 0 1.875vw;
+}
+.cdOneDataTextBox {
+  width: 17.361vw;
+  height: 2.778vw;
+  border-radius: 0.347vw;
+  border: 1px solid #70707050;
+  padding-left: 10px;
+  margin-bottom: 1.25vw;
+  display: flex;
+  align-items: center;
+}
+.cdOneDataLabel label {
+  height: 2.778vw;
+  margin-bottom: 1.25vw;
+
+  display: flex;
+  align-items: center;
+  padding: 0;
+  letter-spacing: 0px;
+  color: #1d1d1d;
+  font-size: 18px;
+}
+.cdTwo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  margin: 0.5555vw;
+}
+.cdTwoEle {
+  /* width: 12.5vw; */
+  /* height: 6.667vw; */
+  text-align: center;
+  border-radius: 0.694vw;
+  margin: 0.5555vw;
+  /* margin-bottom: 0; */
+  background: transparent linear-gradient(180deg, #ffecd7 0%, #ffc9c9 100%);
+}
+.cdTwoEle h2 {
+  color: #1d1d1d;
+}
+.cdTwoEle h1 {
+  color: #0e8b00;
+}
+.cdydbutton {
+  display: flex;
+  justify-content: center;
+  margin: 0.5555vw 0 1.111vw 0;
+}

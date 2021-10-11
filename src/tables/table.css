@@ -1,5 +1,6 @@
 .tableMain {
   margin: 0 8.333vw;
+  z-index: -1;
 }
 .tableOptions {
   display: flex;

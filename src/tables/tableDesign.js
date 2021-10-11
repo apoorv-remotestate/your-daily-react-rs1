@@ -2,8 +2,11 @@ export function tableDesign(data, columns) {
   if (data.length !== 0) {
     return (
       <table>
+        <colgroup>
+          <col span="11" style={{ color: "#000", background: "#000" }} />
+        </colgroup>
         <thead>
-          <tr key={Object.values(data)[0]}>
+          <tr>
             {columns.map((data) => (
               <th>{data}</th>
             ))}
@@ -24,7 +27,7 @@ export function tableDesign(data, columns) {
     return (
       <table>
         <thead>
-          <tr key={Object.values(data)[0]}>
+          <tr>
             {columns.map((data) => (
               <th>{data}</th>
             ))}

@@ -1,0 +1,138 @@
+.udOneImg img {
+  width: 9.306vw;
+  height: 9.306vw;
+  border-radius: 4.653vw;
+}
+.udContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: #70707050;
+}
+
+.udClose img {
+  width: 1.389vw;
+  height: 1.389vw;
+  margin: 1.319vw 1.667vw 0 0;
+}
+.udClose {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.udform-control {
+  border: 1px solid #707070;
+  border-radius: 0.694vw;
+  /* margin: 8.681vw 11.458vw 4.236vw 11.458vw; */
+  width: 77.083vw;
+  background-color: #fff;
+}
+
+.udMain {
+  border-bottom: 2px solid #f88a1250;
+  margin: 2.569vw 4.861vw 0 4.861vw;
+  display: flex;
+}
+
+.udOneData {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  margin-bottom: 0.417vw;
+}
+.udOneDataLabel,
+.udOneDataText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin: 0;
+}
+.udOneDataLabel {
+  margin: 0 4.375vw 0 5.347vw;
+}
+.udOneDataTextBox {
+  width: 17.361vw;
+  height: 2.778vw;
+  border-radius: 0.347vw;
+  border: 1px solid #70707050;
+  padding-left: 10px;
+  margin-bottom: 1.25vw;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+.udOneDataLabel label {
+  height: 2.778vw;
+  margin-bottom: 1.25vw;
+
+  display: flex;
+  align-items: center;
+  padding: 0;
+  letter-spacing: 0px;
+  color: #1d1d1d;
+  font-size: 27px;
+}
+.udTwo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.udTwoEle {
+  width: 12.5vw;
+  height: 6.667vw;
+  text-align: center;
+  border-radius: 0.694vw;
+  margin: 1.111vw;
+  margin-bottom: 0;
+  background: transparent linear-gradient(180deg, #ffecd7 0%, #ffc9c9 100%);
+}
+.udTwoEle h2 {
+  color: #1d1d1d;
+}
+.udTwoEle h1 {
+  color: #0e8b00;
+}
+
+.udThree {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.udThreeTab {
+  text-align: center;
+  width: 34.722vw;
+  min-height: 200px;
+  border: 1px solid #707070;
+  border-radius: 15px;
+  box-shadow: 3px 3px 6px #00000029;
+  margin: 2.222vw 0.972vw;
+}
+.udThreeTab h1 {
+  margin: 0;
+  color: #fff;
+  padding: 10px;
+  border-radius: 15px 15px 0px 0px;
+  font-weight: normal;
+  background: #f88a12;
+}
+
+.udThreeTab h2 {
+  text-align: left;
+  color: #777777;
+  border-top: 1px solid #707070;
+  margin: 0;
+  padding: 16px 0 16px 40px;
+}
+
+.udydbutton {
+  display: flex;
+  justify-content: center;
+  margin: 0.5555vw 0 1.111vw 0;
+}

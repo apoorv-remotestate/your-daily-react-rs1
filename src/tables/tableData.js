@@ -16,7 +16,6 @@ export async function tableGet(staffType) {
       { method: "GET", headers: { Authorization: `${token}` } }
     );
     let tableGot = await table1.json();
-    console.log(tableGot);
     return tableGot;
   }
 }

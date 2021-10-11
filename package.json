@@ -21,6 +21,7 @@
     "react-scripts": "4.0.3",
     "react-swipeable-views": "^0.14.0",
     "react-tabs": "^3.2.2",
+    "reactjs-popup": "^2.0.5",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

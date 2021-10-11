@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -15,18 +15,30 @@ const columns = [
   "Delivery Time",
 ];
 
-export function Denied() {
-  const orderType = "denied";
-  const token = localStorage.getItem("userToken");
-  const baseurl = "https://dev-api.yourdaily.co.in";
-  const table1 = await fetch(
-    `${baseurl}/api/store-manager/dashboard/order/${orderType}`,
-    { method: "GET", headers: { Authorization: `${token}` } }
-  );
-  let data = await table1.json();
+function Denied({ select }) {
+  const [data, setData] = useState([]);
+
+  async function tableGet(orderType) {
+    const token = localStorage.getItem("userToken");
+    const baseurl = "https://dev-api.yourdaily.co.in";
+    let table1 = await fetch(
+      `${baseurl}/api/store-manager/dashboard/order/${orderType}`,
+      {
+        method: "GET",
+        headers: { Authorization: `${token}` },
+      }
+    );
+    let tableGot = await table1.json();
+
+    return tableGot;
+  }
+
+  useEffect(() => {
+    tableGet(select).then((table) => setData(table));
+  }, [select]);
 
   if (data.length !== 0) {
-    let index = 1;
+    let index = 0;
     return (
       <>
         <TableContainer>
@@ -49,7 +61,7 @@ export function Denied() {
                       {index}
                     </TableCell>
                     <TableCell style={{ color: "#777777", fontSize: "20px" }}>
-                      {data.orderID}
+                      {data.orderId}
                     </TableCell>
 
                     <TableCell style={{ color: "#777777", fontSize: "20px" }}>
@@ -91,3 +103,4 @@ export function Denied() {
     );
   }
 }
+export default Denied;

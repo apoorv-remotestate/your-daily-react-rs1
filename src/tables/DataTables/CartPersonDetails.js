@@ -27,22 +27,22 @@ function CPD({ select, enable, setEnable }) {
   const [openModal, setOpenModal] = useState(false);
   const [passData, setPassData] = useState({});
   const [data, setData] = useState([]);
-  async function tableGet(staffType) {
-    const token = localStorage.getItem("userToken");
-    const baseurl = "https://dev-api.yourdaily.co.in";
-    let table1 = await fetch(
-      `${baseurl}/api/store-manager/dashboard/staff/${staffType}`,
-      {
-        method: "GET",
-        headers: { Authorization: `${token}` },
-      }
-    );
-    let tableGot = await table1.json();
 
-    return tableGot;
-  }
   useEffect(() => {
-    tableGet(select).then((table) => setData(table));
+    (async () => {
+      const token = localStorage.getItem("userToken");
+      const baseurl = "https://dev-api.yourdaily.co.in";
+      let table1 = await fetch(
+        `${baseurl}/api/store-manager/dashboard/staff/${select}`,
+        {
+          method: "GET",
+          headers: { Authorization: `${token}` },
+        }
+      );
+      let tableGot = await table1.json();
+
+      setData(tableGot);
+    })();
   }, [select, enable]);
 
   const handleAction = async (id, role) => {
@@ -73,6 +73,7 @@ function CPD({ select, enable, setEnable }) {
       });
     }
   }
+
   if (data.length !== 0) {
     return (
       <>

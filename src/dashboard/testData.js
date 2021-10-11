@@ -72,14 +72,14 @@ export async function dataGet() {
       label: "Denied/Disputed order",
       value: parseInt(`${dataGot.deniedOrder}`),
       value2: parseInt(`${dataGot.disputedOrder}`),
-      link: "qweq",
+      link: "/order/denied",
       button: true,
     },
     {
       id: 10,
       label: "Scheduled order",
       value: parseInt(`${dataGot.unassignedOrders}`),
-      link: "qweqw",
+      link: "/order/scheduled",
       button: true,
     },
   ];

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -15,8 +15,29 @@ const columns = [
   "Action",
 ];
 
-export function Disputed({ data, enable, setEnable }) {
+function Disputed({ select }) {
+  const [data, setData] = useState([]);
+
+  async function tableGet() {
+    const token = localStorage.getItem("userToken");
+    const baseurl = "https://dev-api.yourdaily.co.in";
+    let table1 = await fetch(
+      `${baseurl}/api/store-manager/dashboard/order/disputed`,
+      {
+        method: "GET",
+        headers: { Authorization: `${token}` },
+      }
+    );
+    let tableGot = await table1.json();
+
+    return tableGot;
+  }
+
+  useEffect(() => {
+    tableGet().then((table) => setData(table));
+  }, [select]);
   if (data.length !== 0) {
+    let index = 0;
     return (
       <>
         <TableContainer>
@@ -32,43 +53,70 @@ export function Disputed({ data, enable, setEnable }) {
             </TableHead>
             <TableBody key={Date.now()}>
               {data.map((data) => {
-                let enabled = data.enabled;
-
+                index += 1;
                 return (
                   <TableRow>
-                    <TableCell style={{ color: "#777777", fontSize: "20px" }}>
-                      Sno
+                    <TableCell
+                      style={{
+                        textAlign: "center",
+                        color: "#777777",
+                        fontSize: "20px",
+                      }}
+                    >
+                      {index}
                     </TableCell>
 
-                    <TableCell style={{ color: "#777777", fontSize: "20px" }}>
-                      {data.regDate}
+                    <TableCell
+                      style={{
+                        textAlign: "center",
+                        color: "#777777",
+                        fontSize: "20px",
+                      }}
+                    >
+                      {data.orderId}
                     </TableCell>
 
-                    <TableCell style={{ color: "#F88A12", fontSize: "20px" }}>
-                      {data.totalOrders}
+                    <TableCell
+                      style={{
+                        textAlign: "center",
+                        color: "#777777",
+                        fontSize: "20px",
+                      }}
+                    >
+                      {data.userAddress}
                     </TableCell>
 
-                    <TableCell style={{ color: "#FF0000", fontSize: "20px" }}>
-                      {data.deniedOrders}
+                    <TableCell
+                      style={{
+                        textAlign: "center",
+                        color: "#777777",
+                        fontSize: "20px",
+                      }}
+                    >
+                      {data.disputedAt}
                     </TableCell>
 
-                    <TableCell style={{ color: "#4612F8", fontSize: "20px" }}>
-                      {data.canceledOrders}
+                    <TableCell
+                      style={{
+                        textAlign: "center",
+                        color: "#777777",
+                        fontSize: "20px",
+                      }}
+                    >
+                      {data.userPhone}
                     </TableCell>
 
-                    <TableCell style={{ color: "#21F812", fontSize: "20px" }}>
-                      {data.totalAmount}
+                    <TableCell
+                      style={{
+                        textAlign: "center",
+                        color: "#777777",
+                        fontSize: "20px",
+                      }}
+                    >
+                      {data.resolvedAt}
                     </TableCell>
 
-                    <TableCell style={{ color: "#777777", fontSize: "20px" }}>
-                      {data.avgRating}
-                    </TableCell>
-
-                    <TableCell style={{ color: "#777777", fontSize: "20px" }}>
-                      {data.flagged}
-                    </TableCell>
-
-                    <TableCell>
+                    {/* <TableCell>
                       <img
                         id={data.id}
                         defaultChecked={enabled}
@@ -84,7 +132,7 @@ export function Disputed({ data, enable, setEnable }) {
                         style={{ width: "1.806vw", height: "1.806vw" }}
                         alt="checkbox"
                       />
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 );
               })}
@@ -109,3 +157,4 @@ export function Disputed({ data, enable, setEnable }) {
     );
   }
 }
+export default Disputed;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -18,14 +18,23 @@ const columns = [
   "Action",
 ];
 
-export function Scheduled({ enable, setEnable }) {
-  const token = localStorage.getItem("userToken");
-  const baseurl = "https://dev-api.yourdaily.co.in";
-  const table1 = await fetch(`${baseurl}/api/store-manager/scheduled/orders`, {
-    method: "GET",
-    headers: { Authorization: `${token}` },
-  });
-  let data = await table1.json();
+function Scheduled({ select, enable, setEnable }) {
+  const [data, setData] = useState([]);
+
+  async function tableGet() {
+    const token = localStorage.getItem("userToken");
+    const baseurl = "https://dev-api.yourdaily.co.in";
+    let table1 = await fetch(`${baseurl}/api/store-manager/scheduled/orders`, {
+      method: "GET",
+      headers: { Authorization: `${token}` },
+    });
+    let tableGot = await table1.json();
+    return tableGot;
+  }
+
+  useEffect(() => {
+    tableGet().then((table) => setData(table));
+  }, [select, enable]);
 
   const handleAction = async (id) => {
     const baseurl = "https://dev-api.yourdaily.co.in";
@@ -37,6 +46,7 @@ export function Scheduled({ enable, setEnable }) {
   };
 
   if (data.length !== 0) {
+    console.log(data);
     return (
       <>
         <TableContainer>
@@ -105,7 +115,18 @@ export function Scheduled({ enable, setEnable }) {
                     >
                       {data.amount}
                     </TableCell>
+                    {/* <TableCell></TableCell> */}
 
+                    {/* <TableCell
+                      style={{
+                        textAlign: "center",
+                        color: "#777777",
+                        fontSize: "20px",
+                      }}
+                    >
+                      {data.items.name} {data.items.quantity}
+                      {data.items.baseQuantity}
+                    </TableCell> */}
                     <TableCell
                       style={{
                         textAlign: "center",
@@ -114,9 +135,25 @@ export function Scheduled({ enable, setEnable }) {
                       }}
                     >
                       {data.items.map((data) => {
-                        data.name;
-                        data.quantity;
-                        data.baseQuantity;
+                        if (data) {
+                          return (
+                            <TableCell
+                              style={{
+                                textAlign: "center",
+                                color: "#777777",
+                                fontSize: "20px",
+                                border: "0px",
+                                display: "flex",
+                                flexDirection: "column",
+                                margin: "0px",
+                                padding: "0px",
+                                minWidth: "200px",
+                              }}
+                            >
+                              {data.name}--{data.quantity} :{data.baseQuantity}
+                            </TableCell>
+                          );
+                        }
                       })}
                     </TableCell>
 
@@ -157,3 +194,4 @@ export function Scheduled({ enable, setEnable }) {
     );
   }
 }
+export default Scheduled;

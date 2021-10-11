@@ -59,7 +59,6 @@ function UserDetail({ select, enable, setEnable }) {
             <TableBody key={Date.now()}>
               {data.map((data) => {
                 let dataSome = data;
-                let enabled = data.enabled;
 
                 return (
                   <TableRow>
@@ -106,7 +105,7 @@ function UserDetail({ select, enable, setEnable }) {
                     </TableCell>
 
                     <TableCell style={{ color: "#777777", fontSize: "20px" }}>
-                      {data.flagged}
+                      {data.flagCount}
                     </TableCell>
                   </TableRow>
                 );

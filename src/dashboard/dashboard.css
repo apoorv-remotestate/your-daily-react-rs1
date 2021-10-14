@@ -48,3 +48,9 @@
   font-size: 1.111vw;
   margin: 0;
 }
+
+.dashboardDetailBox h1,
+.dashboardDetailBox h2,
+.dashboardDetailBox h3 {
+  margin: 0;
+}

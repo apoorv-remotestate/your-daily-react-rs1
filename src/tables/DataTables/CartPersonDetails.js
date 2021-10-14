@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -31,7 +31,8 @@ function CPD({ select, enable, setEnable }) {
   useEffect(() => {
     (async () => {
       const token = localStorage.getItem("userToken");
-      const baseurl = "https://dev-api.yourdaily.co.in";
+      const baseurl =
+        "http://yd-dev-elb-841236067.ap-south-1.elb.amazonaws.com/api/health";
       let table1 = await fetch(
         `${baseurl}/api/store-manager/dashboard/staff/${select}`,
         {
@@ -45,34 +46,42 @@ function CPD({ select, enable, setEnable }) {
     })();
   }, [select, enable]);
 
-  const handleAction = async (id, role) => {
-    const baseurl = "https://dev-api.yourdaily.co.in";
-    const token = localStorage.getItem("userToken");
-    let role1 = role === "cart-boy" ? "delivery-boy" : "cart-boy";
-    console.log(id, role1);
-    await fetch(`${baseurl}/api/store-manager/staff/update/role`, {
-      method: "PUT",
-      headers: { Authorization: `${token}` },
-      body: JSON.stringify({ id: id, newRole: role1 }),
-    });
-  };
-
-  async function sendEnable(id, enable) {
-    const baseurl = "https://dev-api.yourdaily.co.in";
-    const token = localStorage.getItem("userToken");
-
-    if (enable) {
-      await fetch(`${baseurl}/api/store-manager/staff/enable/${id}`, {
+  const handleAction = useCallback(
+    async (id, role) => {
+      const baseurl =
+        "http://yd-dev-elb-841236067.ap-south-1.elb.amazonaws.com";
+      const token = localStorage.getItem("userToken");
+      let role1 = role === "cart-boy" ? "delivery-boy" : "cart-boy";
+      console.log(id, role1);
+      await fetch(`${baseurl}/api/store-manager/staff/update/role`, {
         method: "PUT",
         headers: { Authorization: `${token}` },
+        body: JSON.stringify({ id: id, newRole: role1 }),
       });
-    } else {
-      await fetch(`${baseurl}/api/store-manager/staff/disable/${id}`, {
-        method: "PUT",
-        headers: { Authorization: `${token}` },
-      });
-    }
-  }
+    },
+    [enable]
+  );
+
+  const sendEnable = useCallback(
+    async (id, enable) => {
+      const baseurl =
+        "http://yd-dev-elb-841236067.ap-south-1.elb.amazonaws.com";
+      const token = localStorage.getItem("userToken");
+
+      if (enable) {
+        await fetch(`${baseurl}/api/store-manager/staff/enable/${id}`, {
+          method: "PUT",
+          headers: { Authorization: `${token}` },
+        });
+      } else {
+        await fetch(`${baseurl}/api/store-manager/staff/disable/${id}`, {
+          method: "PUT",
+          headers: { Authorization: `${token}` },
+        });
+      }
+    },
+    [enable]
+  );
 
   if (data.length !== 0) {
     return (
@@ -197,6 +206,7 @@ function CPD({ select, enable, setEnable }) {
                       <img
                         id={data.id}
                         defaultChecked={enabled}
+                        style={{ cursor: "pointer" }}
                         onClick={() => {
                           enabled
                             ? sendEnable(data.id, false)
@@ -236,7 +246,9 @@ function CPD({ select, enable, setEnable }) {
           <TableHead>
             <TableRow>
               {columns.map((data) => (
-                <TableCell>{data}</TableCell>
+                <TableCell sx={{ textAlign: "center", color: "#777777" }}>
+                  {data}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>

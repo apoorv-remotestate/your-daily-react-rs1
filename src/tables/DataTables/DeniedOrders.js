@@ -20,7 +20,7 @@ function Denied({ select }) {
 
   async function tableGet(orderType) {
     const token = localStorage.getItem("userToken");
-    const baseurl = "https://dev-api.yourdaily.co.in";
+    const baseurl = "http://yd-dev-elb-841236067.ap-south-1.elb.amazonaws.com";
     let table1 = await fetch(
       `${baseurl}/api/store-manager/dashboard/order/${orderType}`,
       {
@@ -94,7 +94,9 @@ function Denied({ select }) {
           <TableHead>
             <TableRow>
               {columns.map((data) => (
-                <TableCell>{data}</TableCell>
+                <TableCell sx={{ textAlign: "center", color: "#777777" }}>
+                  {data}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>

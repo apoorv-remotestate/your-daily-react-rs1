@@ -1,0 +1,68 @@
+#notistack-snackbar {
+  padding: 0px;
+}
+.NotiMain {
+  background: #f88a12 0% 0% no-repeat padding-box;
+  border-radius: 10px 10px 0px 0px;
+  padding: 10px 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.NotiMain h1 {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+.NotiMain img {
+  height: 20px;
+  width: 20px;
+}
+.NotiContent {
+  background: #f4f4f4 0% 0% no-repeat padding-box;
+  height: 152px;
+  border-radius: 0px 0px 10px 10px;
+}
+.NotiContentOne h1 {
+  color: #020202;
+  margin: 0;
+  font-size: 16px;
+  line-height: 17px;
+  font-weight: normal;
+  padding: 16px 0px 0px 40px;
+}
+
+.NotiContentTwo {
+  padding: 10px 25px 0px 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.NotiContentTwo h1 {
+  color: #f88a12;
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.NotiContentTwo h2 {
+  font-size: 14px;
+  font-weight: normal;
+  color: #020202;
+  max-width: 150px;
+  margin: 0;
+}
+.NotiContentTwo-2 {
+  text-align: end;
+}
+
+.NotiContentOne img,
+.NotiContentTwo-1 img {
+  width: 14px;
+  height: 14px;
+}

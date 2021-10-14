@@ -13,15 +13,19 @@
 .tableOptions h3 {
   margin: 0;
 }
-h2 {
-  font-size: 1.528vw;
+.tableOptions h2 {
+  font-size: 22px;
   color: #777777;
   font-weight: normal;
 }
-h3 {
-  font-size: 1.111vw;
+.tableOptions h3 {
+  font-size: 20px;
   color: #f88a12;
   font-weight: normal;
+}
+
+.tableOptionsCal {
+  margin-right: 30px;
 }
 
 .tableSelect {
@@ -76,4 +80,7 @@ td {
 
 input[type="checkbox"] {
   display: none;
+}
+.tableOptions a {
+  text-decoration: none;
 }

@@ -1,6 +1,6 @@
 export async function dataGet() {
   const token = localStorage.getItem("userToken");
-  const baseurl = "https://dev-api.yourdaily.co.in";
+  const baseurl = "http://yd-dev-elb-841236067.ap-south-1.elb.amazonaws.com";
   let data1 = await fetch(`${baseurl}/api/store-manager/dashboard/stats`, {
     method: "GET",
     headers: { Authorization: `${token}` },
@@ -57,14 +57,14 @@ export async function dataGet() {
       id: 7,
       label: "Total Ongoing Bookings",
       value: parseInt(`${dataGot.onGoingOrder}`),
-      link: "adsad",
+      link: "/booking/ongoing",
       button: true,
     },
     {
       id: 8,
       label: "Past Week Bookings",
       value: parseInt(`${dataGot.bookingForLastWeek}`),
-      link: "zxczc",
+      link: "/booking/past",
       button: true,
     },
     {

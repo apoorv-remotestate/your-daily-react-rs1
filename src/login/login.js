@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 import "./login.css";
 
 const Login = () => {
-  const baseurl = "https://dev-api.yourdaily.co.in";
+  const baseurl = "http://yd-dev-elb-841236067.ap-south-1.elb.amazonaws.com";
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

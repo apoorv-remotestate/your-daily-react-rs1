@@ -29,7 +29,8 @@ function DBD({ select, enable, setEnable }) {
   const [data, setData] = useState([]);
   async function tableGet(staffType) {
     const token = localStorage.getItem("userToken");
-    const baseurl = "https://dev-api.yourdaily.co.in";
+    const baseurl =
+      "http://yd-dev-elb-841236067.ap-south-1.elb.amazonaws.com/api/health";
     let table1 = await fetch(
       `${baseurl}/api/store-manager/dashboard/staff/${staffType}`,
       {
@@ -46,7 +47,7 @@ function DBD({ select, enable, setEnable }) {
   }, [select, enable]);
 
   const handleAction = async (id, role) => {
-    const baseurl = "https://dev-api.yourdaily.co.in";
+    const baseurl = "http://yd-dev-elb-841236067.ap-south-1.elb.amazonaws.com";
     const token = localStorage.getItem("userToken");
     let role1 = role === "cart-boy" ? "delivery-boy" : "cart-boy";
     console.log(id, role1);
@@ -58,7 +59,7 @@ function DBD({ select, enable, setEnable }) {
   };
 
   async function sendEnable(id, enable) {
-    const baseurl = "https://dev-api.yourdaily.co.in";
+    const baseurl = "http://yd-dev-elb-841236067.ap-south-1.elb.amazonaws.com";
     const token = localStorage.getItem("userToken");
 
     if (enable) {
@@ -235,7 +236,9 @@ function DBD({ select, enable, setEnable }) {
           <TableHead>
             <TableRow>
               {columns.map((data) => (
-                <TableCell>{data}</TableCell>
+                <TableCell sx={{ textAlign: "center", color: "#777777" }}>
+                  {data}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>

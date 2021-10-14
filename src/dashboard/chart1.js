@@ -12,7 +12,7 @@ const Chart1 = () => {
 
   const chartGet = async () => {
     const token = localStorage.getItem("userToken");
-    const baseurl = "https://dev-api.yourdaily.co.in";
+    const baseurl = "http://yd-dev-elb-841236067.ap-south-1.elb.amazonaws.com";
     let data1 = await fetch(
       `${baseurl}/api/store-manager/dashboard/adg/${days}`,
       {

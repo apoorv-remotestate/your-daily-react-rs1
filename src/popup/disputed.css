@@ -1,0 +1,194 @@
+.disputedMainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.disputedContainer {
+  border: 1px solid #000000;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  padding: 45px 25px 40px 25px;
+  max-width: 700px;
+  max-height: 300px;
+}
+
+.disputedUser {
+  width: 374px;
+}
+
+.disputedUserData {
+  display: flex;
+  border-bottom: #00000050 1px solid;
+  margin-bottom: 5px;
+}
+
+.disputedUserDataImg img {
+  max-width: 100px;
+  min-height: 100px;
+  border-radius: 50px;
+}
+
+.disputedUserDataDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 15px;
+}
+.disputedUserDataDetail h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1d1d1d;
+}
+.disputedUserDataDetail h2 {
+  font-size: 18px;
+  font-weight: normal;
+  color: #1d1d1d;
+}
+
+.disputedContainer h1,
+.disputedContainer h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.disputedUserType {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  height: 50%;
+}
+
+.disputedUserTypeLabel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.disputedUserTypeValues {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.disputedUserTypeLabel h1 {
+  letter-spacing: 0px;
+  color: #1d1d1d;
+  opacity: 1;
+  text-align: left;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.disputedUserTypeValues h2 {
+  letter-spacing: 0px;
+  color: #1d1d1d;
+  opacity: 1;
+  text-align: right;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: normal;
+}
+
+.disputedData {
+  width: 280px;
+  height: 220px;
+  border: solid 1px #70707033;
+  padding: 8px;
+
+  box-shadow: 0px 3px 6px #00000029;
+  margin-left: 18px;
+  border-radius: 10px;
+}
+
+.disputedDataHeader {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: #00000030 1px solid;
+  padding-bottom: 5px;
+}
+
+.disputedDataFooter {
+  display: flex;
+  justify-content: space-between;
+  border-top: #00000030 1px solid;
+  padding-top: 5px;
+}
+
+.disputedDataHeader h1 {
+  font-size: 20px;
+  line-height: 24px;
+  color: #1d1d1d;
+}
+
+.disputedDataFooter h1 {
+  font-size: 18px;
+  line-height: 24px;
+  color: #1d1d1d;
+  text-align: center;
+}
+
+.disputedDataMain {
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  margin: 7px 0px;
+}
+
+.disputedDataMain h2 {
+  color: #1d1d1d;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: lighter;
+}
+
+.disputedDataMainItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px #00000030 solid;
+  width: 140px;
+  color: #1d1d1d;
+}
+
+.disputedDataMainQty {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px #00000030 solid;
+  width: 70px;
+  text-align: center;
+  color: #1d1d1d;
+}
+
+.disputedDataMainPrice {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 70px;
+  text-align: center;
+  color: #1d1d1d;
+}
+
+.disputedDataHeader1 {
+  width: 140px;
+  text-align: center;
+}
+
+.disputedDataHeader2 {
+  width: 70px;
+  text-align: center;
+}
+
+.disputedDataHeader3 {
+  width: 70px;
+  text-align: center;
+}
